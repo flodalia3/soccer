@@ -20,7 +20,7 @@ public class Goal implements WithId<Long> {
     private Long id;
     private int minute;
     @ManyToOne
-    @JoinColumn(name="ASSIST", referencedColumnName = "ID", nullable=false)
+    @JoinColumn(name="ASSIST", referencedColumnName = "ID", nullable=true)
     private Player assistPlayer;
     @ManyToOne
     @JoinColumn(name="PLAYER_ID", referencedColumnName = "ID", nullable=false)

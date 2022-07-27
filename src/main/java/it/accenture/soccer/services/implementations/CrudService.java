@@ -5,6 +5,7 @@ import it.accenture.soccer.model.abstractions.WithId;
 import it.accenture.soccer.services.AbstractCrudService;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import static it.accenture.soccer.exceptions.EntityNotFoundException.ERROR_NOT_FOUND;
@@ -19,7 +20,8 @@ public class CrudService <T extends WithId<K>, K, R extends JpaRepository<T, K>>
     }
     @Override
     public Iterable<T> getAll() {
-        return repo.findAll();
+        List<T> res = repo.findAll();
+        return  res;
     }
 
     @Override

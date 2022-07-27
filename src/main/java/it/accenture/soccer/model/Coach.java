@@ -23,7 +23,7 @@ public class Coach implements WithId<Long> {
     private String surname;
     private Date dob;
     @OneToOne
-    @JoinColumn(name="TEAM_ID", referencedColumnName = "ID", nullable=false)
+    @JoinColumn(name="TEAM_ID", referencedColumnName = "ID", nullable=true)
     private Team team;
     @ManyToOne
     @JoinColumn(name="CITY_ID", referencedColumnName = "ID", nullable=false)
