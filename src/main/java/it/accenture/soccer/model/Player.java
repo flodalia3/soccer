@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -21,7 +22,8 @@ public class Player implements WithId<Long> {
     private Long id;
     private String name;
     private String surname;
-    private Date birthDate;
+    @Column(name = "dob")
+    private LocalDate dob;
     private int jersey;
     @ManyToOne
     @JoinColumn(name="TEAM_ID", referencedColumnName = "ID", nullable=false)

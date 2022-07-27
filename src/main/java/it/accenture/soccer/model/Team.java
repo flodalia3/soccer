@@ -25,10 +25,11 @@ public class Team implements WithId<Long> {
     @ManyToOne
     @JoinColumn(name="CITY_ID", referencedColumnName = "ID", nullable=false)
     private City city;
-    @OneToMany(mappedBy = "homeTeam")
-    private Set<Match> homeMatches;
-    @OneToMany(mappedBy = "awayTeam")
-    private Set<Match> awayMatches;
+
+//    @OneToMany(mappedBy = "homeTeam")
+//    private Set<Match> homeMatches;
+//    @OneToMany(mappedBy = "awayTeam")
+//    private Set<Match> awayMatches;
     @OneToMany(mappedBy = "team")
     private Set<Player> players;
 }
