@@ -13,7 +13,7 @@ public interface CoachMapper {
     @Mapping(source = "team.id", target = "teamId")
     @Mapping(source = "team.name", target = "teamName")
     @Mapping(source = "birthCity.id", target = "birthCityId")
-    @Mapping(source = "birthCity.name", target = "birthCity")
+    @Mapping(source = "birthCity.name", target = "birthCityName")
     CoachDTO fromCoach (Coach p);
 
     @Mapping(target = "team.id", source = "teamId")

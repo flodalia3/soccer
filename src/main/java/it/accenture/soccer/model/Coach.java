@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Entity
 @Table(name = "COACH")
 public class Coach implements WithId<Long> {
     @Id
