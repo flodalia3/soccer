@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 @Profile("jpa")
@@ -17,4 +16,9 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     @Query("SELECT p FROM Player p WHERE SIZE(p.goals)>=:nGoals")
     public List<Player> findByGoalCountGreaterThan(@Param("nGoals") int nGoals);
 
+    @Query (value = "SELECT p FROM Player p WHERE SIZE(p.goals)>0 ORDER BY SIZE(p.goals) DESC, SIZE(p.assists) DESC")
+    public List<Player> find10SortByGoal();
+
+    @Query ("SELECT p FROM Player p WHERE SIZE(p.assists)>0 ORDER BY SIZE(p.assists) DESC, SIZE(p.goals) DESC")
+    public List<Player> find10SortByAssist();
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class Match implements WithId<Long> {
     @Column(name = "AWAY_SCORE")
     private int awayScore;
     @Column(name = "GAME_DATE")
-    private Date gameDate;
+    private LocalDate gameDate;
     @Column(name = "EXTRA_TIME1")
     private int extraTimeFirstHalf;
     @Column(name = "EXTRA_TIME2")

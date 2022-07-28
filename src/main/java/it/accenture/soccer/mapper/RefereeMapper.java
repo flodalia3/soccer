@@ -6,12 +6,15 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.text.SimpleDateFormat;
+
 @Mapper
 public interface RefereeMapper {
     RefereeMapper INSTANCE = Mappers.getMapper(RefereeMapper.class);
-
+    SimpleDateFormat formatter = new SimpleDateFormat(
+            "dd/MM/yyyy");
     @Mapping(target = "cityName", source = "birthCity.name")
-    RefereeDTO fromReferee (Referee c);
+    RefereeDTO fromReferee (Referee r);
 
     @Mapping(target = "birthCity.name", source = "cityName")
     Referee toReferee (RefereeDTO cDTO);

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -15,7 +16,7 @@ public class RefereeDTO {
     private long id;
     private String name;
     private String surname;
-    private Date dob;
-    private Date workSince;
+    private LocalDate dob;
+    private LocalDate workSince;
     private String cityName;
 }

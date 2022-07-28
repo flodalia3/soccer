@@ -37,5 +37,15 @@ public class PlayerController {
         return ResponseEntity.ok(PlayerMapper.INSTANCE.fromPlayers(rs));
     }
 
+    @GetMapping("topgoals")
+    public ResponseEntity<Iterable<PlayerDTO>> findTopScorers(){
+        var rs = crudService.findTop10SortByGoal();
+        return ResponseEntity.ok(PlayerMapper.INSTANCE.fromPlayers(rs));
+    }
 
+    @GetMapping("topassists")
+    public ResponseEntity<Iterable<PlayerDTO>> findTopAssistMen(){
+        var rs = crudService.findTop10SortByAssist();
+        return ResponseEntity.ok(PlayerMapper.INSTANCE.fromPlayers(rs));
+    }
 }

@@ -20,5 +20,6 @@ public class TeamDTO {
     private String cityName;
 //    private List<String> playerNames;
     private List<PlayerDTO> playerDTOs;
+    private int points;
     //MI INTERESSA INSERIRE NEL DTO I SET DEI MATCH (HOME E AWAY) E DEI PLAYERS?
 }

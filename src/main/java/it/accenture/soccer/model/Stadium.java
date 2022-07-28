@@ -27,6 +27,7 @@ public class Stadium implements WithId<Long> {
     @ManyToOne
     @JoinColumn(name="CITY_ID", referencedColumnName = "ID", nullable=false)
     private City city;
+
     @OneToMany(mappedBy = "stadium")
     private Set<Match> matches;
 }

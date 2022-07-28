@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -26,9 +27,9 @@ public class Referee implements WithId<Long> {
     @Column(name = "SURNAME")
     private String surname;
     @Column(name = "DOB")
-    private Date dob;
+    private LocalDate dob;
     @Column(name = "WORK_SINCE")
-    private Date workSince;
+    private LocalDate workSince;
     @ManyToOne
     @JoinColumn(name="CITY_ID", referencedColumnName = "ID", nullable=false)
     private City birthCity;
