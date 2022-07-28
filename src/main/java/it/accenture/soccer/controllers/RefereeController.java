@@ -5,11 +5,9 @@ import it.accenture.soccer.mapper.RefereeMapper;
 import it.accenture.soccer.model.Referee;
 import it.accenture.soccer.services.implementations.RefereeCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.StreamSupport;
 
@@ -27,10 +25,14 @@ public class RefereeController {
     @GetMapping
     public ResponseEntity<Iterable<RefereeDTO>> getAll() {
         var rs = crudService.getAll();
-       // var dtos = StreamSupport.stream(cls.spliterator(), false).map(RefereeMapper.INSTANCE::fromReferee).toList();
-
         return ResponseEntity.ok(RefereeMapper.INSTANCE.fromReferees(rs));
     }
 
-
+    @GetMapping("{id}")
+    public ResponseEntity<RefereeDTO> getOne(@PathVariable long id) {
+        var rs = crudService.findById(id);
+        if (rs.isPresent())
+            return ResponseEntity.ok(RefereeMapper.INSTANCE.fromReferee(rs.get()));
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
 }
