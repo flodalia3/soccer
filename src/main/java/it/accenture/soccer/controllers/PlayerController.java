@@ -2,9 +2,9 @@ package it.accenture.soccer.controllers;
 
 import it.accenture.soccer.dtos.PlayerDTO;
 import it.accenture.soccer.mapper.PlayerMapper;
-import it.accenture.soccer.model.Player;
 import it.accenture.soccer.services.implementations.PlayerCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +29,14 @@ public class PlayerController {
         // var dtos = StreamSupport.stream(cls.spliterator(), false).map(PlayerMapper.INSTANCE::fromPlayer).toList();
 
         return ResponseEntity.ok(PlayerMapper.INSTANCE.fromPlayers(rs));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<PlayerDTO> getOne(@PathVariable long id) {
+        var rs = crudService.findById(id);
+        if (rs.isPresent())
+            return ResponseEntity.ok(PlayerMapper.INSTANCE.fromPlayer(rs.get()));
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("{goals}")

@@ -1,8 +1,11 @@
 package it.accenture.soccer.controllers;
 
-import it.accenture.soccer.dtos.TeamDTO;
-import it.accenture.soccer.mapper.TeamMapper;
-import it.accenture.soccer.services.implementations.TeamCrudService;
+import it.accenture.soccer.dtos.CoachDTO;
+import it.accenture.soccer.dtos.CoachDTO;
+import it.accenture.soccer.mapper.CoachMapper;
+import it.accenture.soccer.mapper.CoachMapper;
+import it.accenture.soccer.model.Coach;
+import it.accenture.soccer.services.implementations.CoachCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,26 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("team")
-public class TeamController {
-    private TeamCrudService crudService;
+@RequestMapping("coach")
+public class CoachController {
+    private CoachCrudService crudService;
 
     @Autowired
-    public TeamController(TeamCrudService crudService) {
+    public CoachController(CoachCrudService crudService) {
         this.crudService = crudService;
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<TeamDTO>> getAll() {
+    public ResponseEntity<Iterable<CoachDTO>> getAll() {
         var rs = crudService.getAll();
-        return ResponseEntity.ok(TeamMapper.INSTANCE.fromTeams(rs));
+        return ResponseEntity.ok(CoachMapper.INSTANCE.fromCoaches(rs));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TeamDTO> getOne(@PathVariable long id) {
+    public ResponseEntity<CoachDTO> getOne(@PathVariable long id) {
         var rs = crudService.findById(id);
         if (rs.isPresent())
-            return ResponseEntity.ok(TeamMapper.INSTANCE.fromTeam(rs.get()));
+            return ResponseEntity.ok(CoachMapper.INSTANCE.fromCoach(rs.get()));
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
