@@ -13,7 +13,4 @@ public class RefereeCrudService extends CrudService<Referee, Long, RefereeReposi
         super(repo, Referee.class);
     }
 
-//    public Optional<Referee> findById(long id){
-//        return repo.findById(id);
-//    }
 }

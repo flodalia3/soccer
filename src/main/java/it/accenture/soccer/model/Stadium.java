@@ -30,4 +30,22 @@ public class Stadium implements WithId<Long> {
 
     @OneToMany(mappedBy = "stadium")
     private Set<Match> matches;
+
+    public int getNumMatchesPlayed(){
+        int gamesPlayed = 0;
+        for (Match m: matches){
+            if (m.getGameDate().isBefore(LocalDate.now()) || m.getGameDate().isEqual(LocalDate.now()))
+                gamesPlayed++;
+        }
+        return gamesPlayed;
+    }
+
+    public int getNumFutureMatches(){
+        int futureGames = 0;
+        for (Match m: matches){
+            if (m.getGameDate().isAfter(LocalDate.now()))
+                futureGames++;
+        }
+        return futureGames;
+    }
 }
