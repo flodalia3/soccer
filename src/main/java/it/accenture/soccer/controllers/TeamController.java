@@ -1,19 +1,22 @@
 package it.accenture.soccer.controllers;
 
 import it.accenture.soccer.dtos.TeamDTO;
+import it.accenture.soccer.exceptions.EntityNotFoundException;
 import it.accenture.soccer.mapper.TeamMapper;
+import it.accenture.soccer.model.City;
+import it.accenture.soccer.model.Team;
 import it.accenture.soccer.services.implementations.TeamCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.StreamSupport;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @RestController
+@CrossOrigin
 @RequestMapping("team")
 public class TeamController {
     private TeamCrudService crudService;
@@ -35,6 +38,21 @@ public class TeamController {
         if (rs.isPresent())
             return ResponseEntity.ok(TeamMapper.INSTANCE.fromTeam(rs.get()));
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> addOne(@RequestBody TeamDTO tdto){
+        Team t = TeamMapper.INSTANCE.fromTeamDTO(tdto);
+        try {
+            Team tsaved = crudService.saveOrUpdate(t);
+            var dto = TeamMapper.INSTANCE.fromTeam(tsaved);
+            URI uri = new URI("localhost:8080/team/" + tdto.getId());
+            return ResponseEntity.created(uri).body(dto);
+        } catch (URISyntaxException e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
 

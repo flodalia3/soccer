@@ -45,6 +45,4 @@ public class Match implements WithId<Long> {
     private Referee referee;
     @OneToMany(mappedBy = "match")
     private Set<Goal> goals;
-
-
 }
