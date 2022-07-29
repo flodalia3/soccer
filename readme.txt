@@ -15,7 +15,7 @@ Sul back-end sono state implementate altre funzionalità che non abbiamo effetti
 Per quanto riguarda il back-end, abbiamo iniziato insieme ed Alessio lo ha completato (funzionalità, controller, mapper).
 Per quanto riguarda il front-end, è stato implementato per lo più da Florinda.
 
-SQL:
+SQL per generare il database:
 
 --------------------------------------------------------
 --  File created - Friday-July-29-2022   
